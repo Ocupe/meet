@@ -44,6 +44,7 @@ export function ReactionBar() {
   React.useEffect(() => {
     document.addEventListener<'click'>('click', handleClickOutside);
     window.addEventListener<'resize'>('resize', () => setUpdateRequired(true));
+    setUpdateRequired(true);
     return () => {
       document.removeEventListener<'click'>('click', handleClickOutside);
       window.removeEventListener<'resize'>('resize', () => setUpdateRequired(true));
@@ -80,7 +81,7 @@ export function ReactionBar() {
                 <button
                   className="lk-button"
                   onClick={() => sendReaction(emoji, send, participant as LocalParticipant)}
-                  style={{ fontSize: '1.5rem', maxHeight: '100%' }}
+                  style={{ fontSize: '1.5rem', maxHeight: '100%', padding: '0.25rem 0.75rem' }}
                 >
                   {emoji}
                 </button>
