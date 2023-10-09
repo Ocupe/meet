@@ -4,9 +4,9 @@ import {
   PreJoin,
   LocalUserChoices,
   useToken,
-  VideoConference,
   formatChatMessageLinks,
 } from '@livekit/components-react';
+import { VideoConference2 } from '../../lib/copy-past/VideoConference2';
 import {
   ExternalE2EEKeyProvider,
   LogLevel,
@@ -168,7 +168,8 @@ const ActiveRoom = ({ roomName, userChoices, onLeave }: ActiveRoomProps) => {
           audio={userChoices.audioEnabled}
           onDisconnected={onLeave}
         >
-          <VideoConference chatMessageFormatter={formatChatMessageLinks} />
+          <VideoConference2 chatMessageFormatter={formatChatMessageLinks} />
+
           <DebugMode logLevel={LogLevel.info} />
         </LiveKitRoom>
       )}
