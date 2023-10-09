@@ -9,6 +9,7 @@ import {
   StartAudio,
 } from '@livekit/components-react';
 import { mergeProps } from '@livekit/components-react/src/utils';
+import { useMediaQuery } from '@livekit/components-react/src/hooks/internal/useMediaQuery';
 import { ChatIcon, LeaveIcon } from '@livekit/components-react/src/assets/icons';
 import { Track } from 'livekit-client';
 import * as React from 'react';
