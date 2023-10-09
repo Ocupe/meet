@@ -8,11 +8,11 @@ import {
   DisconnectButton,
   StartAudio,
 } from '@livekit/components-react';
-import { mergeProps } from '@livekit/components-react/src/utils';
-import { useMediaQuery } from '@livekit/components-react/src/hooks/internal/useMediaQuery';
-import { ChatIcon, LeaveIcon } from '@livekit/components-react/src/assets/icons';
 import { Track } from 'livekit-client';
 import * as React from 'react';
+import { ReactionBar } from '../reactions/ReactionsBar';
+import ChatIcon from './ChatIcon';
+import LeaveIcon from './LeaveIcon';
 
 /** @public */
 export type ControlBarControls = {
@@ -45,7 +45,7 @@ export interface ControlBarProps extends React.HTMLAttributes<HTMLDivElement> {
  * ```
  * @public
  */
-export function ControlBar({ variation, controls, ...props }: ControlBarProps) {
+export function ControlBar2({ variation, controls, ...props }: ControlBarProps) {
   const [isChatOpen, setIsChatOpen] = React.useState(false);
   const layoutContext = useMaybeLayoutContext();
   React.useEffect(() => {
@@ -53,7 +53,8 @@ export function ControlBar({ variation, controls, ...props }: ControlBarProps) {
       setIsChatOpen(layoutContext?.widget.state?.showChat);
     }
   }, [layoutContext?.widget.state?.showChat]);
-  const isTooLittleSpace = useMediaQuery(`(max-width: ${isChatOpen ? 1000 : 760}px)`);
+  //   const isTooLittleSpace = useMediaQuery(`(max-width: ${isChatOpen ? 1000 : 760}px)`);
+  const isTooLittleSpace = false;
 
   const defaultVariation = isTooLittleSpace ? 'minimal' : 'verbose';
   variation ??= defaultVariation;
@@ -91,7 +92,7 @@ export function ControlBar({ variation, controls, ...props }: ControlBarProps) {
     setIsScreenShareEnabled(enabled);
   };
 
-  const htmlProps = mergeProps({ className: 'lk-control-bar' }, props);
+  const htmlProps = { className: 'lk-control-bar' };
 
   return (
     <div {...htmlProps}>
@@ -125,6 +126,7 @@ export function ControlBar({ variation, controls, ...props }: ControlBarProps) {
           {showText && (isScreenShareEnabled ? 'Stop screen share' : 'Share screen')}
         </TrackToggle>
       )}
+      <ReactionBar />
       {visibleControls.chat && (
         <ChatToggle>
           {showIcon && <ChatIcon />}

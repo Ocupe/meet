@@ -21,7 +21,8 @@ import {
 import { useCreateLayoutContext } from '@livekit/components-react';
 import { usePinnedTracks, useTracks } from '@livekit/components-react';
 import { Chat } from '@livekit/components-react';
-import { ControlBar } from '@livekit/components-react';
+import { ControlBar2 } from '../copy-past/ControlBar2';
+import { ParticipantTileWithReaction } from './ParticipantTileWithReaction';
 
 /**
  * @public
@@ -124,7 +125,7 @@ export function VideoConference2({
             {!focusTrack ? (
               <div className="lk-grid-layout-wrapper">
                 <GridLayout tracks={tracks}>
-                  <ParticipantTile />
+                  <ParticipantTileWithReaction />
                 </GridLayout>
               </div>
             ) : (
@@ -137,7 +138,7 @@ export function VideoConference2({
                 </FocusLayoutContainer>
               </div>
             )}
-            <ControlBar controls={{ chat: true }} />
+            <ControlBar2 controls={{ chat: true }} />
           </div>
           <Chat
             style={{ display: widgetState.showChat ? 'flex' : 'none' }}
