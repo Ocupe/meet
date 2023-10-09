@@ -22,6 +22,7 @@ import {
 import LockLockedIcon from './LockLockedIcon';
 import ScreenShareIcon from './ScreenShareIcon';
 import ParticipantPlaceholder from './ParticipantPlaceholder';
+import { REACTION_TOPIC, useReactions } from '../reactions/reactions';
 import { ReactionsCanvas } from '../reactions/ReactionsCanvas';
 
 /**
@@ -145,6 +146,12 @@ export function ParticipantTileWithReaction({
     },
     [trackReference, layoutContext],
   );
+
+  useReactions((reaction) => {
+    console.group('ParticipantTile');
+    console.log('reaction:', reaction);
+    console.groupEnd();
+  });
 
   return (
     <div style={{ position: 'relative' }} {...elementProps}>

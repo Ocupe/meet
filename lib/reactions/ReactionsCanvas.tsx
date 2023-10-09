@@ -8,6 +8,7 @@ type Emoji = {
   left: number;
   emoji: string;
   id: number;
+  type: 'normal' | 'bomb';
 };
 
 export function ReactionsCanvas() {
@@ -30,8 +31,8 @@ export function ReactionsCanvas() {
       left: Math.random() * 40,
       emoji: reaction.payload,
       id: reaction.timestamp,
+      type: reaction.type,
     };
-    console.log('addEmoji', emoji);
     setEmojis((prev) => [...prev, emoji]);
   }
 
@@ -59,7 +60,7 @@ export function ReactionsCanvas() {
           key={emoji.id}
           style={{
             position: 'absolute',
-            fontSize: '3rem',
+            fontSize: emoji.type === 'bomb' ? '10rem' : '3rem',
             animation: 'rise-wave 2s linear',
             bottom: `${emoji.bottom}%`,
             left: `${emoji.left}%`,

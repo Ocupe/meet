@@ -1,15 +1,19 @@
 import { useDataChannel, useEnsureParticipant, useEnsureRoom } from '@livekit/components-react';
 import * as React from 'react';
-import { REACTION_TOPIC, decode, sendReaction } from './reactions';
+import { REACTION_TOPIC, decode, useSendReaction } from './reactions';
 import { LocalParticipant } from 'livekit-client';
 import { computeMenuPosition, wasClickOutside } from '@livekit/components-core';
 
-export function ReactionBar() {
+export interface ReactionBarProps {
+  reactions: string[];
+}
+
+export function ReactionBar({ reactions = ['❤️', '👍', '🎉', '😂'] }: ReactionBarProps) {
   const participant = useEnsureRoom().localParticipant;
   const { send } = useDataChannel(REACTION_TOPIC);
-
+  const clickHandler = useSendReaction(send, participant as LocalParticipant);
   const [isOpen, setIsOpen] = React.useState(false);
-  const [emojis, setEmojis] = React.useState<string[]>(['❤️', '👍', '🎉', '😂']);
+  const [emojis] = React.useState<string[]>(reactions);
   const [updateRequired, setUpdateRequired] = React.useState<boolean>(true);
 
   const button = React.useRef<HTMLButtonElement>(null);
@@ -80,8 +84,8 @@ export function ReactionBar() {
               <li key={emoji} style={{ listStyleType: 'none' }}>
                 <button
                   className="lk-button"
-                  onClick={() => sendReaction(emoji, send, participant as LocalParticipant)}
-                  style={{ fontSize: '1.5rem', maxHeight: '100%', padding: '0.25rem 0.75rem' }}
+                  onClick={() => clickHandler(emoji)}
+                  style={{ fontSize: '1.5rem', maxHeight: '100%', padding: '0.2rem 0.7rem' }}
                 >
                   {emoji}
                 </button>
