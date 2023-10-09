@@ -54,7 +54,6 @@ export function ReactionsCanvas() {
 
   return (
     <div style={{ width: '100%', height: '100%', color: 'red', position: 'absolute' }}>
-      <span style={{ color: 'red', backgroundColor: 'blue' }}>ReactionCanvas</span>
       {emojis.map((emoji) => (
         <div
           key={emoji.id}
