@@ -1,7 +1,7 @@
 import { useDataChannel } from '@livekit/components-react';
 import { LocalParticipant } from 'livekit-client';
 
-type ReactionMessage = {
+export type ReactionMessage = {
   payload: string;
   timestamp: number;
   participantId: string;
@@ -13,7 +13,7 @@ const encoder = new TextEncoder();
 const decoder = new TextDecoder();
 
 function encode(message: ReactionMessage) {
-  return encoder.encode(JSON.stringify({ message: message.payload, timestamp: message.timestamp }));
+  return encoder.encode(JSON.stringify(message));
 }
 
 export function decode(message: Uint8Array): ReactionMessage {
@@ -32,4 +32,16 @@ export function sendReaction(
     participantId: localParticipant.identity,
   };
   send(encode(msg), {});
+}
+
+export function useReactions(onReaction: (reaction: ReactionMessage) => void) {
+  //   const [messages, setMessages] = React.useState<ReactionMessage[]>([]);
+  const { message } = useDataChannel(REACTION_TOPIC, (msg) => {
+    console.group(`Reaction from: ${msg.from?.identity}}`);
+    console.log(msg);
+    console.groupEnd();
+
+    const reaction = decode(msg.payload);
+    onReaction(reaction);
+  });
 }

@@ -63,3 +63,25 @@ h2 a {
 h2 a {
   text-decoration: none;
 }
+
+@keyframes rise-wave {
+  0% {
+    opacity: 1;
+    bottom: 0%;
+    transform: translateX(0%);
+  }
+  25% {
+    transform: translateX(-10%);
+  }
+  50% {
+    transform: translateX(8%);
+  }
+  75% {
+    transform: translateX(-6%);
+  }
+  100% {
+    opacity: 0;
+    bottom: 75%;
+    transform: translateX(4%);
+  }
+}

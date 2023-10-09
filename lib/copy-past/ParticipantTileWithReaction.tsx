@@ -22,7 +22,7 @@ import {
 import LockLockedIcon from './LockLockedIcon';
 import ScreenShareIcon from './ScreenShareIcon';
 import ParticipantPlaceholder from './ParticipantPlaceholder';
-import { REACTION_TOPIC } from '../reactions/reactions';
+import { ReactionsCanvas } from '../reactions/ReactionsCanvas';
 
 /**
  * The `ParticipantContextIfNeeded` component only creates a `ParticipantContext`
@@ -195,6 +195,7 @@ export function ParticipantTileWithReaction({
             </>
           )}
           <FocusToggle trackRef={trackReference} />
+          <ReactionsCanvas />
         </ParticipantContextIfNeeded>
       </TrackRefContextIfNeeded>
     </div>
