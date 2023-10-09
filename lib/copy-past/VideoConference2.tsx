@@ -21,7 +21,7 @@ import {
 import { useCreateLayoutContext } from '@livekit/components-react';
 import { usePinnedTracks, useTracks } from '@livekit/components-react';
 import { Chat } from '@livekit/components-react';
-import { ControlBar } from '@livekit/components-react';
+import { ControlBar2 } from '../copy-past/ControlBar2';
 
 /**
  * @public
@@ -137,7 +137,7 @@ export function VideoConference2({
                 </FocusLayoutContainer>
               </div>
             )}
-            <ControlBar controls={{ chat: true }} />
+            <ControlBar2 controls={{ chat: true }} />
           </div>
           <Chat
             style={{ display: widgetState.showChat ? 'flex' : 'none' }}
