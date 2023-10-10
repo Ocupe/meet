@@ -85,3 +85,20 @@ h2 a {
     transform: translateX(4%);
   }
 }
+
+.record-button {
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}

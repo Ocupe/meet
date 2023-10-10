@@ -13,6 +13,7 @@ import * as React from 'react';
 import { ReactionBar } from '../reactions/ReactionsBar';
 import ChatIcon from './ChatIcon';
 import LeaveIcon from './LeaveIcon';
+import { RecordButton } from '../record/RecordButton';
 
 /** @public */
 export type ControlBarControls = {
@@ -96,6 +97,7 @@ export function ControlBar2({ variation, controls, ...props }: ControlBarProps) 
 
   return (
     <div {...htmlProps}>
+      <RecordButton />
       {visibleControls.microphone && (
         <div className="lk-button-group">
           <TrackToggle source={Track.Source.Microphone} showIcon={showIcon}>

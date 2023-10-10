@@ -5,7 +5,7 @@ import { LocalParticipant } from 'livekit-client';
 import { computeMenuPosition, wasClickOutside } from '@livekit/components-core';
 
 export interface ReactionBarProps {
-  reactions: string[];
+  reactions?: string[];
 }
 
 export function ReactionBar({ reactions = ['❤️', '👍', '🎉', '😂'] }: ReactionBarProps) {
